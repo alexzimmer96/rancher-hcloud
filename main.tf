@@ -14,6 +14,7 @@ terraform {
 module "cluster_init" {
   source = "./module-cluster-init"
   hcloud_token         =  var.hcloud_token
+  hcloud_ssh_key_path  =  var.hcloud_ssh_key_path
   instance_count       =  var.instance_count
   instance_prefix      =  var.instance_prefix
   instance_type        =  var.instance_type

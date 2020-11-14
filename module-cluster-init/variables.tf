@@ -3,6 +3,12 @@ variable "hcloud_token" {
     description = "The token that is used to interact with the Hetzner Cloud API."
 }
 
+variable "hcloud_ssh_key_path" {
+    type = string
+    default = "~/.ssh/rancher_management"
+    description = "Path to the key you want to use register on your Hetzner Cloud machines. The public key must have the same location and a .pub ending."
+}
+
 variable "instance_prefix" {
     type = string
     default = "rancher-management"

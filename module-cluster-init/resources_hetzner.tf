@@ -16,7 +16,7 @@ resource "hcloud_network" "kubernetes_internal_network" {
 
 resource "hcloud_ssh_key" "rancher_management_ssh_key" {
   name       = "rancher-management-key"
-  public_key = file("~/.ssh/rancher_management.pub")
+  public_key = file("${var.hcloud_ssh_key_path}.pub")
   labels = {
     automated = true
   }
@@ -37,7 +37,7 @@ resource "hcloud_server" "rancher_management_nodes" {
     connection {
       type        = "ssh"
       user        = "root"
-      private_key = file("~/.ssh/rancher_management")
+      private_key = file(var.hcloud_ssh_key_path)
       host        = self.ipv4_address
     }
   }

@@ -1,4 +1,5 @@
 hcloud_token           = "INSERT YOUR TOKEN HERE"
+hcloud_ssh_key_path    = "~/.ssh/rancher_management" # Also referring to ~/.ssh/rancher_management.pub
 letsencrypt_issuer     = "not-existing@example.local"
 
 # This will default to a nip.io subdomain: rancher.<YOUR-LB-IP>.nip.io

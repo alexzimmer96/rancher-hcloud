@@ -1,0 +1,35 @@
+provider "rke" {}
+
+resource "rke_cluster" "rancher_management_cluster" {
+  cluster_name       = "rancher-management"
+  kubernetes_version = "v1.19.3-rancher1-2"
+
+  dynamic "nodes" {
+    for_each = hcloud_server.rancher_management_nodes
+    content {
+      address          = nodes.value.ipv4_address
+      internal_address = hcloud_server_network.rancher_node_subnet_registration[nodes.key].ip
+      role             = ["controlplane", "worker", "etcd"]
+      user             = "root"
+      ssh_agent_auth   = true
+      ssh_key          = file("~/.ssh/rancher_management")
+    }
+  }
+
+  upgrade_strategy {
+    drain                  = true
+    max_unavailable_worker = "20%"
+  }
+
+  authentication {
+    sans = [
+      hcloud_load_balancer.rancher_management_lb.ipv4
+    ]
+  }
+
+}
+
+resource "local_file" "kube_config_server_yaml" {
+  filename = "./kube_config.yaml"
+  content  = rke_cluster.rancher_management_cluster.kube_config_yaml
+}

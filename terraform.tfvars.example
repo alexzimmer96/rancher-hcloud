@@ -1,0 +1,14 @@
+hcloud_token           = "INSERT YOUR TOKEN HERE"
+letsencrypt_issuer     = "not-existing@example.local"
+
+# This will default to a nip.io subdomain: rancher.<YOUR-LB-IP>.nip.io
+# rancher_hostname       = "rancher.alexzimmer.de"
+
+# instance_count       = 3
+# instance_prefix      = "rancher-management"
+# instance_type        = "cx31"
+# instance_zones       = ["nbg1", "fsn1", "hel1"]
+# lb_location          = "nbg1"
+# lb_name              = "rancher-management-lb"
+# lb_type              = "lb11"
+# private_network_name = "kubernetes-internal"

@@ -26,9 +26,10 @@ module "cluster_init" {
 }
 
 module "rancher_init" {
-  source             = "./module-rancher-init"
-  letsencrypt_issuer = var.letsencrypt_issuer
-  rancher_hostname   = var.rancher_hostname
-  kubeconfig_path    = module.cluster_init.kubeconfig_path
-  lb_address         = module.cluster_init.lb_address
+  source                 = "./module-rancher-init"
+  letsencrypt_issuer     = var.letsencrypt_issuer
+  rancher_admin_password = var.rancher_admin_password
+  rancher_hostname       = var.rancher_hostname
+  kubeconfig_path        = module.cluster_init.kubeconfig_path
+  lb_address             = module.cluster_init.lb_address
 }

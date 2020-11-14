@@ -14,6 +14,11 @@ variable "letsencrypt_issuer" {
     description = "Mail address that is used to create the Lets Encrypt Issuer. You will get notifications if your certs are expiring."
 }
 
+variable "rancher_admin_password" {
+    type = string
+    description = "Password that is used for you Rancher Admin login when the Rancher installation gets bootstrapped."
+}
+
 variable "rancher_hostname" {
     type = string
     default = null

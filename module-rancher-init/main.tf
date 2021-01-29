@@ -6,7 +6,7 @@ terraform {
     }
     rancher2 = {
       source = "rancher/rancher2"
-      version = "1.10.6"
+      version = "1.11.0"
     }
   }
 }
@@ -92,4 +92,12 @@ resource "rancher2_node_driver" "hetzner_node_driver" {
   ui_url   = "https://storage.googleapis.com/hcloud-rancher-v2-ui-driver/component.js"
   url      = "https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/download/3.0.0/docker-machine-driver-hetzner_3.0.0_linux_amd64.tar.gz"
   whitelist_domains = ["storage.googleapis.com"]
+}
+
+output "rancher_admin_token" {
+  value = rancher2_bootstrap.setup_admin.token
+}
+
+output "hetzner_driver_id" {
+  value = rancher2_node_driver.hetzner_node_driver.id
 }

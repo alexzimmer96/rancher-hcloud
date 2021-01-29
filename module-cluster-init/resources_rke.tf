@@ -12,7 +12,7 @@ resource "rke_cluster" "rancher_management_cluster" {
       role             = ["controlplane", "worker", "etcd"]
       user             = "root"
       ssh_agent_auth   = true
-      ssh_key          = file("~/.ssh/rancher_management")
+      ssh_key          = file(var.hcloud_ssh_key_path)
     }
   }
 

@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = "1.23.0"
-    }
-    rke = {
-      source  = "rancher/rke"
-      version = "1.1.5"
-    }
-  }
-}
-
 module "cluster_init" {
   source = "./module-cluster-init"
   hcloud_token         = var.hcloud_token
@@ -32,4 +19,13 @@ module "rancher_init" {
   rancher_hostname       = var.rancher_hostname
   kubeconfig_path        = module.cluster_init.kubeconfig_path
   lb_address             = module.cluster_init.lb_address
+}
+
+module "node_init" {
+  source              = "./module-node-init"
+  rancher_admin_token = module.rancher_init.rancher_admin_token
+  hcloud_token        = var.hcloud_token
+  rancher_hostname    = var.rancher_hostname
+  lb_address          = module.cluster_init.lb_address
+  hetzner_driver_id   = module.rancher_init.hetzner_driver_id
 }

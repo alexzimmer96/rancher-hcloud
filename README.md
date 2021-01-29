@@ -18,13 +18,17 @@ terraform apply -target=module.cluster_init
 
 # Installing Cert-Manager and Rancher
 terraform apply -target=module.rancher_init
+
+# Create default node templates
+terraform apply -target=module.node_init
 ```
 
 ## Project Structure
 
-This Project consists of two modules.
+This Project consists of three modules.
 The `module-cluster-init` is for creating a basic RKE-Cluster on Hetzner Cloud, including server provisioning.
 The `module-rancher-init` is for installing Cert-Manager and Rancher on top of your provisioned cluster.
+The `module-node-init` creates Node Templates for Hetzner Cloud on your newly created Rancher instance.
 
 ### Why is this divided into modules?
 

@@ -2,7 +2,7 @@ provider "rke" {}
 
 resource "rke_cluster" "rancher_management_cluster" {
   cluster_name       = "rancher-management"
-  kubernetes_version = "v1.19.7-rancher1-1"
+  kubernetes_version = "v1.19.6-rancher1-1"
 
   dynamic "nodes" {
     for_each = hcloud_server.rancher_management_nodes

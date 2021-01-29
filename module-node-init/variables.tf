@@ -17,3 +17,7 @@ variable "lb_address" {
 variable "hetzner_driver_id" {
   type = string
 }
+
+variable "private_network_name" {
+    type = string
+}

@@ -6,7 +6,7 @@ provider "hcloud" {
 # Creating Networks and Nodes
 
 resource "hcloud_network" "kubernetes_internal_network" {
-  name     = "kubernetes-internal"
+  name     = var.private_network_name
   ip_range = "172.16.0.0/12"
 
   labels = {

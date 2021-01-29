@@ -22,6 +22,6 @@ resource "rancher2_node_template" "hetzner_create_template" {
     image           = "ubuntu-20.04"
     server_type     = "cx31"
     server_location = "hel1"
-    networks        = "kubernetes-internal"
+    networks        = var.private_network_name
   }
 }

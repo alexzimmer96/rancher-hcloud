@@ -18,10 +18,12 @@ resource "rancher2_node_template" "hetzner_create_template" {
   description = "Default template to acquire Hetzner Cloud Nodes"
   driver_id   = var.hetzner_driver_id
   hetzner_config {
-    api_token       = var.hcloud_token
-    image           = "ubuntu-20.04"
-    server_type     = "cx31"
-    server_location = "hel1"
-    networks        = "kubernetes-internal"
+    api_token            = var.hcloud_token
+    image                = "ubuntu-20.04"
+    server_type          = "cx31"
+    server_location      = "hel1"
+    networks             = var.private_network_name
+    use_private_networks = var.use_private_networks
+    userdata             = var.userdata
   }
 }

@@ -72,3 +72,15 @@ variable "private_network_name" {
     default = "kubernetes-internal"
     description = "Name of the private network that is created for your nodes. "
 }
+
+variable "use_private_networks" {
+  type = bool
+  default = false
+  description = "Use private network in node templates."
+}
+
+variable "node_cloud_init_path" {
+    type = string
+    default = ""
+    description = "Path to the cloud init user data for node templates."
+}

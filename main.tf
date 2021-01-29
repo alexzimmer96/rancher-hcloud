@@ -22,10 +22,12 @@ module "rancher_init" {
 }
 
 module "node_init" {
-  source              = "./module-node-init"
-  rancher_admin_token = module.rancher_init.rancher_admin_token
-  hcloud_token        = var.hcloud_token
-  rancher_hostname    = var.rancher_hostname
-  lb_address          = module.cluster_init.lb_address
-  hetzner_driver_id   = module.rancher_init.hetzner_driver_id
+  source               = "./module-node-init"
+  rancher_admin_token  = module.rancher_init.rancher_admin_token
+  hcloud_token         = var.hcloud_token
+  rancher_hostname     = var.rancher_hostname
+  lb_address           = module.cluster_init.lb_address
+  hetzner_driver_id    = module.rancher_init.hetzner_driver_id
+  use_private_networks = var.use_private_networks
+  userdata             = var.node_cloud_init_path
 }

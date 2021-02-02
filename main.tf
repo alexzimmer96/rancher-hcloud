@@ -31,4 +31,8 @@ module "node_init" {
   lb_address           = module.cluster_init.lb_address
   hetzner_driver_id    = module.rancher_init.hetzner_driver_id
   private_network_name = var.private_network_name
+  use_private_networks = var.use_private_networks
+  userdata             = var.node_cloud_init_path
+  node_template_types  = var.node_template_types
+  node_template_zones  = var.node_template_zones
 }

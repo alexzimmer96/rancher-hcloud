@@ -72,3 +72,39 @@ variable "private_network_name" {
     default = "kubernetes-internal"
     description = "Name of the private network that is created for your nodes. "
 }
+
+variable "ip_range" {
+    type = string
+    default = "172.16.0.0/12"
+    description = "Ip Range to use for setting up Hetzner network."
+}
+
+variable "subnet_ip_range" {
+    type = string
+    default = "172.16.1.0/24"
+    description = "Subnet Ip Range to use for setting up Hetzner network."
+}
+
+variable "use_private_networks" {
+  type = bool
+  default = false
+  description = "Use private network in node templates."
+}
+
+variable "node_cloud_init_path" {
+    type = string
+    default = ""
+    description = "Path to the cloud init user data for node templates."
+}
+
+variable "node_template_types" {
+    type = list(string)
+    default = ["cx", "cx-ceph", "cpx", "ccx"]
+    description = "All server types for which a node template will be created"
+}
+
+variable "node_template_zones" {
+    type = list(string)
+    default = ["nbg1", "fsn1", "hel1"]
+    description = "All zones for which a node template will be created."
+}

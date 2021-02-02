@@ -7,7 +7,7 @@ provider "hcloud" {
 
 resource "hcloud_network" "kubernetes_internal_network" {
   name     = var.private_network_name
-  ip_range = "172.16.0.0/12"
+  ip_range = var.ip_range
 
   labels = {
     automated = true
@@ -55,7 +55,7 @@ resource "hcloud_network_subnet" "rancher_management_subnet" {
   network_id   = hcloud_network.kubernetes_internal_network.id
   type         = "cloud"
   network_zone = "eu-central"
-  ip_range     = "172.16.1.0/24"
+  ip_range     = var.subnet_ip_range
 }
 
 resource "hcloud_server_network" "rancher_node_subnet_registration" {

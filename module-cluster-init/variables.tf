@@ -56,3 +56,15 @@ variable "private_network_name" {
     default = "kubernetes-internal"
     description = "Name of the private network that is created for your nodes. "
 }
+
+variable "ip_range" {
+    type = string
+    default = "172.16.0.0/12"
+    description = "Ip Range to use for setting up Hetzner network."
+}
+
+variable "subnet_ip_range" {
+    type = string
+    default = "172.16.1.0/24"
+    description = "Subnet Ip Range to use for setting up Hetzner network."
+}

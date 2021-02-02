@@ -78,14 +78,14 @@ resource "helm_release" "rancher" {
 }
 
 resource "rancher2_bootstrap" "setup_admin" {
-  provider   = "rancher2.bootstrap"
+  provider   = rancher2.bootstrap
   password   = var.rancher_admin_password
   telemetry  = true
   depends_on = [helm_release.rancher]
 }
 
 resource "rancher2_node_driver" "hetzner_node_driver" {
-  provider = "rancher2.admin"
+  provider = rancher2.admin
   active   = true
   builtin  = false
   name     = "Hetzner"

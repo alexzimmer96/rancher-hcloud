@@ -70,12 +70,10 @@ resource "rancher2_node_template" "hetzner_nodes" {
   name        = "${each.value.zone}_${each.value.type}_${each.value.description}"
   driver_id   = var.hetzner_driver_id
   hetzner_config {
-    api_token            = var.hcloud_token
-    image                = "ubuntu-20.04"
-    server_type          = each.value.type
-    server_location      = each.value.zone
-    networks             = var.private_network_name
-    use_private_networks = var.use_private_networks
-    userdata             = file(var.userdata)
+    api_token       = var.hcloud_token
+    image           = "ubuntu-20.04"
+    server_type     = "cx31"
+    server_location = "hel1"
+    networks        = var.private_network_name
   }
 }

@@ -53,7 +53,8 @@ resource "helm_release" "rancher" {
   name = "rancher"
   namespace = "cattle-system"
   chart = "rancher"
-  repository = "https://releases.rancher.com/server-charts/latest"
+  version = "2.5.9"
+  repository = "https://releases.rancher.com/server-charts/stable"
   depends_on = [helm_release.cert_manager]
 
   wait             = true

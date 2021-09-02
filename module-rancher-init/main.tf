@@ -2,11 +2,11 @@ terraform {
   required_providers {
     helm = {
       source  = "hashicorp/helm"
-      version = "1.3.2"
+      version = "2.3.0"
     }
     rancher2 = {
       source = "rancher/rancher2"
-      version = "1.11.0"
+      version = "1.17.2"
     }
   }
 }
@@ -36,7 +36,7 @@ resource "helm_release" "cert_manager" {
   namespace        = "cert-manager"
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
-  version          = "1.0.4"
+  version          = "1.5.3"
 
   wait             = true
   create_namespace = true

@@ -1,5 +1,3 @@
-provider "rke" {}
-
 resource "rke_cluster" "rancher_management_cluster" {
   cluster_name       = "rancher-management"
   kubernetes_version = "v1.19.6-rancher1-1"

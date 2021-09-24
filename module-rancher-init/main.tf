@@ -2,11 +2,11 @@ terraform {
   required_providers {
     helm = {
       source  = "hashicorp/helm"
-      version = "1.3.2"
+      version = "2.3.0"
     }
     rancher2 = {
       source = "rancher/rancher2"
-      version = "1.11.0"
+      version = "1.17.2"
     }
   }
 }
@@ -36,7 +36,7 @@ resource "helm_release" "cert_manager" {
   namespace        = "cert-manager"
   repository       = "https://charts.jetstack.io"
   chart            = "cert-manager"
-  version          = "1.0.4"
+  version          = "1.5.3"
 
   wait             = true
   create_namespace = true
@@ -53,7 +53,8 @@ resource "helm_release" "rancher" {
   name = "rancher"
   namespace = "cattle-system"
   chart = "rancher"
-  repository = "https://releases.rancher.com/server-charts/latest"
+  version = "2.5.9"
+  repository = "https://releases.rancher.com/server-charts/stable"
   depends_on = [helm_release.cert_manager]
 
   wait             = true
@@ -78,14 +79,14 @@ resource "helm_release" "rancher" {
 }
 
 resource "rancher2_bootstrap" "setup_admin" {
-  provider   = "rancher2.bootstrap"
+  provider   = rancher2.bootstrap
   password   = var.rancher_admin_password
   telemetry  = true
   depends_on = [helm_release.rancher]
 }
 
 resource "rancher2_node_driver" "hetzner_node_driver" {
-  provider = "rancher2.admin"
+  provider = rancher2.admin
   active   = true
   builtin  = false
   name     = "Hetzner"

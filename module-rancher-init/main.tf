@@ -53,7 +53,7 @@ resource "helm_release" "rancher" {
   name = "rancher"
   namespace = "cattle-system"
   chart = "rancher"
-  version = "2.5.9"
+  version = "2.6.3"
   repository = "https://releases.rancher.com/server-charts/stable"
   depends_on = [helm_release.cert_manager]
 
@@ -65,6 +65,11 @@ resource "helm_release" "rancher" {
   set {
     name  = "hostname"
     value = var.rancher_hostname != null ? var.rancher_hostname : "rancher.${var.lb_address}.nip.io"
+  }
+
+  set {
+    name  = "bootstrapPassword"
+    value = var.rancher_admin_password
   }
 
   set {
@@ -81,6 +86,7 @@ resource "helm_release" "rancher" {
 resource "rancher2_bootstrap" "setup_admin" {
   provider   = rancher2.bootstrap
   password   = var.rancher_admin_password
+  current_password   = var.rancher_admin_password
   telemetry  = true
   depends_on = [helm_release.rancher]
 }

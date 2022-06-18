@@ -6,7 +6,7 @@ terraform {
     }
     rke = {
       source  = "rancher/rke"
-      version = "1.1.7"
+      version = "1.3.0"
     }
   }
 }
